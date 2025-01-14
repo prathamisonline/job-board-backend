@@ -89,7 +89,6 @@ export const deleteJob = async (
   try {
     const jobId = req.params.id;
 
-    // Check if the job exists
     const [checkResult]: any = await pool.execute(
       'SELECT id FROM jobs WHERE id = ?',
       [jobId]
@@ -97,10 +96,9 @@ export const deleteJob = async (
 
     if (checkResult.length === 0) {
       res.status(404).json({ error: `Job with ID ${jobId} not found.` });
-      return; // Ensure the function ends here
+      return;
     }
 
-    // Delete the job
     const [deleteResult]: any = await pool.execute(
       'DELETE FROM jobs WHERE id = ?',
       [jobId]

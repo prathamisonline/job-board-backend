@@ -1,5 +1,3 @@
-// import { pool } from './pool';
-
 import pool from "./database/connection";
 
 async function testConnection() {
